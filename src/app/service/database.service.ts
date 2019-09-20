@@ -44,7 +44,7 @@ export class DatabaseService {
 
   getUserCollection(){
     let currentUser = firebase.auth().currentUser;
-    return this.firestore.collection('user').valueChanges();;
+    return this.firestore.collection('user').valueChanges();
   }
 
 
