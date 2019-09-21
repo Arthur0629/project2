@@ -25,9 +25,9 @@ export class DatabaseService {
     private firestore: AngularFirestore,
     public afAuth: AngularFireAuth
   ){
-    let currentUser = firebase.auth().currentUser;
-    this.Profile_detail = firestore.collection('user').doc(currentUser.uid).collection('details');
-    this.profileDetails = firestore.collection('user').valueChanges();
+  //   let currentUser = firebase.auth().currentUser;
+  //   this.Profile_detail = firestore.collection('user').doc(currentUser.uid).collection('details');
+  //   this.profileDetails = firestore.collection('user').valueChanges();
   }
 
   addUserProfile( info:Info ){
@@ -47,14 +47,18 @@ export class DatabaseService {
     return this.firestore.collection('user').valueChanges();
   }
 
-
+  getDetails(){
+    let currentUser = firebase.auth().currentUser;
+    this.profileDoc = this.Profile_detail.doc(currentUser.uid);
+    return  this.profileDoc;
+  }
 
 
   get_user_details(info:Info)
   {
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
-      this.firestore.collection('user').doc(currentUser.uid).collection('details').doc(currentUser.uid).set(info)
+      this.firestore.collection('user').doc(currentUser.uid).set(info)
       .then(
         res => resolve(res),
         err => reject(err)
@@ -81,15 +85,29 @@ export class DatabaseService {
   }
 
   show_details(){
+    // let a :Observable<any> ;
     
-    this.Profile_details =  this.Profile_detail.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Info;
-        const id = a.payload.doc.id;
-        return {id, ...data};
-      }))
-    );
-    return this.Profile_details; 
+    // let currentUser = firebase.auth().currentUser;
+    // a = this.firestore.collection('user').doc(currentUser.uid).valueChanges();
+    // return this.firestore.collection('user').doc(currentUser.uid);
+    // // return this.firestore.collection('user').doc(currentUser.uid).valueChanges();
+    // db.collection('cities').doc('SF');
+
+    let currentUser = firebase.auth().currentUser;
+    this.profileDoc = this.firestore.collection('user').doc(currentUser.uid);
+    this.profileDoc.valueChanges();
+    let a = this.profileDoc;
+    return this.profileDoc; 
+
+    
+    // this.Profile_details =  this.Profile_detail.snapshotChanges().pipe(
+    //   map(actions => actions.map(a => {
+    //     const data = a.payload.doc.data() as Info;
+    //     const id = a.payload.doc.id;
+    //     return {id, ...data};
+    //   }))
+    // );
+    // return this.Profile_details; 
   }
 
   show_flatmates(){

@@ -12,13 +12,9 @@ import { Info } from '../models/info';
 })
 export class ProfilePage implements OnInit {
 
-  infos: Info[];
-  inf:Info={
-    name: '',
-    age:'',
-    gender:'',
-    habit:''
-  }
+  info: any;
+  
+ 
   
 
   constructor(
@@ -31,8 +27,16 @@ export class ProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.info = new Object();
+
+    this.info.name ="";
+    this.info.age ="";
+    this.info.gender ="";
+    this.info.habit ="";
+
+
     this.dataservice.show_details().subscribe(infos =>{
-      this.infos = infos;
+      this.info = infos;
     });
     
   }
@@ -40,7 +44,7 @@ export class ProfilePage implements OnInit {
   
   update(){
  
-      this.dataservice.update_details(this.inf);
+      this.dataservice.update_details(this.info);
 
   }
   BacktoHome(){

@@ -15,6 +15,7 @@ export class RecommendationPage implements OnInit {
   arrayOfItems:any [] = [];
   myProflie:any;
   matchingResult:any;
+  
 
   constructor(private navCtrl: NavController,
     public router: Router,
@@ -26,23 +27,26 @@ export class RecommendationPage implements OnInit {
     this.databaseService.getUserCollection().subscribe(items =>{
       this.arrayOfItems = items;
       this.matchingCalculator();
+      var a = this.databaseService.getDetails();
+      var b = 2;
+      
     });
 
   }
 
   onUpdateProfile(){
-    this.navCtrl.navigateForward('/profile')
+    this.navCtrl.navigateForward('/profile');
   }
 
   goHome(){
-    this.navCtrl.navigateForward('/home')
+    this.navCtrl.navigateForward('/home');
   }
 
 
   onCheckDetails(_item){
     //把item放到local storage
+    localStorage.setItem("selectedMate",_item);
     this.navCtrl.navigateForward('/comparasion-detail');
-
   }
 
   
@@ -58,27 +62,26 @@ export class RecommendationPage implements OnInit {
         var totalMetric = 3;
 
 
-      if( localStorage.get("idealMate") ){
+        if(localStorage.getItem("idealMate") ){
 
 
-      if ( localStorage.get("idealAge") === mateProfile.age ){
-      num += 1;
-      }
+          if ( localStorage.getItem("idealAge") === mateProfile.age ){
+            num += 1;
+          }
 
-      if ( localStorage.get("idealGender")  === mateProfile.gender ){
-      num += 1;
-      }
+          if ( localStorage.getItem("idealGender")  === mateProfile.gender ){
+            num += 1;
+          }
 
-      if ( localStorage.get("habit") === mateProfile.habit ){
-      num += 1;
-      }
+          if ( localStorage.getItem("habit") === mateProfile.habit ){
+            num += 1;
+          }
 
-
-      this.arrayOfItems[i].result = ( num / totalMetric );
-
-      } else{
-      this.arrayOfItems[i].result = 0;
-      }
+          this.arrayOfItems[i].result = ( num / totalMetric );
+        }   
+        else{
+          this.arrayOfItems[i].result = 0;
+        }
      
 
     }
