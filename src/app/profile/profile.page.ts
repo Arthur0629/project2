@@ -26,7 +26,7 @@ export class ProfilePage implements OnInit {
     private dataservice : DatabaseService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.info = new Object();
 
     this.info.name ="";
@@ -34,11 +34,9 @@ export class ProfilePage implements OnInit {
     this.info.gender ="";
     this.info.habit ="";
 
-
-    this.dataservice.show_details().subscribe(infos =>{
-      this.info = infos;
-    });
+    this.info = await this.dataservice.show_details();
     
+    let a = 1;
   }
 
   

@@ -5,20 +5,17 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="items?.length > 0 else noinfos">
-    <h1>Your flatmate preference</h1>
-    <ul *ngFor = "let item of items">
-      <div class="row">
-        <ion-label position="floating" color="primary">Age</ion-label>
-        <ion-input [(ngModel)]="item.age" name="age"></ion-input>
-        <ion-label position="floating" color="primary">Gender</ion-label>
-        <ion-input [(ngModel)]="item.gender" name="gender"></ion-input>
-        <ion-label position="floating" color="primary">Habit</ion-label>
-        <ion-input [(ngModel)]="item.habit" name="habit"></ion-input>
-      </div>
-    </ul>
-    <ion-button (click)="update()">Update</ion-button>  
+
+  <div class="row">
+    <ion-label position="floating" color="primary">Age</ion-label>
+    <ion-input [(ngModel)]="idealMate.age" name="age"></ion-input>
+    <ion-label position="floating" color="primary">Gender</ion-label>
+    <ion-input [(ngModel)]="idealMate.gender" name="gender"></ion-input>
+    <ion-label position="floating" color="primary">Habit</ion-label>
+    <ion-input [(ngModel)]="idealMate.habit" name="habit"></ion-input>
   </div>
+  <ion-button (click)="update()">Update</ion-button>  
+
   <ng-template #noinfos>
     <form class="form" [formGroup]="validations_form"  (ngSubmit)="get_input(validations_form.value)">
       <ion-item>
