@@ -13,12 +13,12 @@ import { Info } from '../models/info';
 export class ProfilePage implements OnInit {
 
   infos: Info[];
-  inf:Info={
-    name: '',
-    age:'',
-    gender:'',
-    habit:''
-  };
+  // inf:Info={
+  //   name: '',
+  //   age:'',
+  //   gender:'',
+  //   habit:''
+  // };
 
   localProfile : Info = {
     name: '',
