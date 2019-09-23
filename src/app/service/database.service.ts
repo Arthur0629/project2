@@ -26,88 +26,88 @@ export class DatabaseService {
     public afAuth: AngularFireAuth
   ){
     let currentUser = firebase.auth().currentUser;
-    this.Profile_detail = firestore.collection('user').doc(currentUser.uid).collection('details');
-    this.Flatmate_detail = firestore.collection('flatmate').doc(currentUser.uid).collection('preference');
-    // this.Profile_details =  this.Profile_detail.snapshotChanges().pipe(
-    //   map(actions => actions.map(a => {
-    //     const data = a.payload.doc.data() as Info;
-    //     const id = a.payload.doc.id;
-    //     return {id, ...data};
-    //   }))
-    // );
+    this.Profile_detail = firestore.collection('user');
+    this.Flatmate_detail = firestore.collection('flatmate');
   }
-  get_user_details(info:Info)
-  {
+  addUserProfile(info: Info) {
+
     return new Promise<any>((resolve, reject) => {
-      let currentUser = firebase.auth().currentUser;
-      this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').doc(currentUser.uid).set({
-        age: "",
-        gender: "",
-        habit: ""
-      })
-      this.firestore.collection('user').doc(currentUser.uid).collection('details').doc(currentUser.uid).set(info)
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
-    })
-    
+
+      let uid = firebase.auth().currentUser.uid;
+      let profile:any = new Object();
+      profile.userID = uid;
+      profile.name = info.name;
+      profile.age = info.age;
+      profile.gender = info.gender;
+      profile.habit = info.habit;
+  
+      this.firestore.collection('user').doc(uid).set(profile)
+        .then(
+          res => resolve(res),
+          err => reject(err)
+        );
+      let flatmate:any = new Object();
+      flatmate.userID = uid;
+      flatmate.age = "";
+      flatmate.gender = "";
+      flatmate.habit = "";
+  
+      this.firestore.collection('flatmate').doc(uid).set(flatmate)
+        .then(
+          res => resolve(res),
+          err => reject(err)
+        );
+    });
 
   }
 
-  get_flatmte_preference(value)
-  {
-    return new Promise<any>((resolve, reject) => {
-      let currentUser = firebase.auth().currentUser;
-      this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').doc(currentUser.uid).set({
-        age: value.age,
-        gender: value.gender,
-        habit: value.habit
-      })
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
-    })
-
-  }
 
   show_details(){
+    return new Promise<any>((resolve, reject) => {
 
+      let userId = firebase.auth().currentUser.uid;
 
-
-    
-    this.Profile_details = this.Profile_detail.valueChanges();
-    return this.Profile_details; 
+      this.firestore.collection('user' , ref=>ref.where('userID', '==', userId)).get().toPromise().then(
+          res => resolve(res.docs[0].data()),
+          err => reject(err)
+        )
+    })
   }
 
   show_flatmates(){
-    this.Flatmate_details =  this.Flatmate_detail.valueChanges();
-    return this.Flatmate_details;
+    return new Promise<any>((resolve, reject) => {
+
+      let userId = firebase.auth().currentUser.uid;
+
+      this.firestore.collection('flatmate' , ref=>ref.where('userID', '==', userId)).get().toPromise().then(
+          res => resolve(res.docs[0].data()),
+          err => reject(err)
+        )
+    })
   }
 
   update_details(info:Info){
-    
-    let currentUser = firebase.auth().currentUser;
-    this.profileDoc = this.Profile_detail.doc(currentUser.uid);
-    this.profileDoc.set(info);
+    let uid = firebase.auth().currentUser.uid;
+      let profile:any = new Object();
+      profile.userID = uid;
+      profile.name = info.name;
+      profile.age = info.age;
+      profile.gender = info.gender;
+      profile.habit = info.habit;
+    this.profileDoc = this.Profile_detail.doc(uid);
+    this.profileDoc.update(profile);
     
   }
 
   update_flatmates(item:Item){
-
-    return new Promise<any>((resolve, reject) => {
-      let currentUser = firebase.auth().currentUser;
-      this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').doc(currentUser.uid).set(item)
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
-    })
-    
-    // let currentUser = firebase.auth().currentUser;
-    // this.FlatmateDoc = this.Flatmate_detail.doc(currentUser.uid);
-    // this.FlatmateDoc.set(item);
+    let uid = firebase.auth().currentUser.uid;
+    let flatmate:any = new Object();
+    flatmate.userID = uid;
+    flatmate.age = item.age;
+    flatmate.gender = item.gender;
+    flatmate.habit = item.habit;
+    this.FlatmateDoc = this.Flatmate_detail.doc(uid);
+    this.FlatmateDoc.update(flatmate);
     
   }
   

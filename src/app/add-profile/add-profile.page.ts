@@ -34,7 +34,7 @@ export class AddProfilePage implements OnInit {
   }
 
   submitProfile(){
-    this.dataService.get_user_details(this.info);
+    this.dataService.addUserProfile(this.info);
     this.info.name = '';
     this.info.age = '';
     this.info.gender = '';
