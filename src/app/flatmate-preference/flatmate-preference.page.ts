@@ -51,10 +51,7 @@ export class FlatmatePreferencePage implements OnInit {
     
   }
 
-  testbutton(){
-    let currentUser = firebase.auth().currentUser;
-    this.test = this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').doc(currentUser.uid).get();
-  }
+  
   
   BacktoHome(){
     this.router.navigateByUrl('home');

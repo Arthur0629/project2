@@ -40,12 +40,18 @@ export class DatabaseService {
   {
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
+      this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').doc(currentUser.uid).set({
+        age: "",
+        gender: "",
+        habit: ""
+      })
       this.firestore.collection('user').doc(currentUser.uid).collection('details').doc(currentUser.uid).set(info)
       .then(
         res => resolve(res),
         err => reject(err)
       )
     })
+    
 
   }
 
