@@ -49,13 +49,7 @@ export class ProfilePage implements OnInit {
 
   
   update(){
-<<<<<<< HEAD
       this.dataservice.update_details(this.localProfile);
-=======
- 
-      this.dataservice.update_details(this.info);
-
->>>>>>> dev-hanwen
   }
 
   BacktoHome(){

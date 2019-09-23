@@ -24,8 +24,8 @@ export class DatabaseService {
     private firestore: AngularFirestore,
     public afAuth: AngularFireAuth
   ) {
-    //   let currentUser = firebase.auth().currentUser;
-    //   this.Profile_detail = firestore.collection('user').doc(currentUser.uid).collection('details');
+      let currentUser = firebase.auth().currentUser;
+      this.Profile_detail = firestore.collection('user').doc(currentUser.uid).collection('details');
     //   this.profileDetails = firestore.collection('user').valueChanges();
   }
 
@@ -57,9 +57,8 @@ export class DatabaseService {
 
   getDetails() {
     let currentUser = firebase.auth().currentUser;
-<<<<<<< HEAD
-    this.Profile_detail = firestore.collection('user').doc(currentUser.uid).collection('details');
-    this.Flatmate_detail = firestore.collection('flatmate').doc(currentUser.uid).collection('preference');
+    this.Profile_detail = this.firestore.collection('user').doc(currentUser.uid).collection('details');
+    this.Flatmate_detail =this. firestore.collection('flatmate').doc(currentUser.uid).collection('preference');
     // this.Profile_details =  this.Profile_detail.snapshotChanges().pipe(
     //   map(actions => actions.map(a => {
     //     const data = a.payload.doc.data() as Info;
@@ -67,10 +66,6 @@ export class DatabaseService {
     //     return {id, ...data};
     //   }))
     // );
-=======
-    this.profileDoc = this.Profile_detail.doc(currentUser.uid);
-    return this.profileDoc;
->>>>>>> dev-hanwen
   }
 
 
