@@ -43,7 +43,7 @@ export class FlatmatePreferencePage implements OnInit {
   
 
   update(){
-    // this.dataService.update_flatmates(this.idealMate);
+    this.dataService.update_flatmates(this.idealMate);
     localStorage.setItem("idealMate",this.idealMate);
     localStorage.setItem("idealAge",this.idealMate.age);
     localStorage.setItem("idealGender",this.idealMate.gender);

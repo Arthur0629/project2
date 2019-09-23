@@ -57,8 +57,20 @@ export class DatabaseService {
 
   getDetails() {
     let currentUser = firebase.auth().currentUser;
+<<<<<<< HEAD
+    this.Profile_detail = firestore.collection('user').doc(currentUser.uid).collection('details');
+    this.Flatmate_detail = firestore.collection('flatmate').doc(currentUser.uid).collection('preference');
+    // this.Profile_details =  this.Profile_detail.snapshotChanges().pipe(
+    //   map(actions => actions.map(a => {
+    //     const data = a.payload.doc.data() as Info;
+    //     const id = a.payload.doc.id;
+    //     return {id, ...data};
+    //   }))
+    // );
+=======
     this.profileDoc = this.Profile_detail.doc(currentUser.uid);
     return this.profileDoc;
+>>>>>>> dev-hanwen
   }
 
 
@@ -90,38 +102,44 @@ export class DatabaseService {
 
   }
 
+  show_details(){
 
-  show_details() {
 
-    return new Promise<any>((resolve, reject) => {
 
-      let userId = firebase.auth().currentUser.uid;
-
-      let citiesRef = this.firestore.collection('user' , ref=>ref.where('userID', '==', userId)).get().toPromise().then(
-          res => resolve(res.docs[0].data()),
-          err => reject(err)
-        )
-    })
     
-
+    this.Profile_details = this.Profile_detail.valueChanges();
+    return this.Profile_details; 
   }
 
-  show_flatmates() {
-    let currentUser = firebase.auth().currentUser;
-    this.Flatmate_details = this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').valueChanges();
+  show_flatmates(){
+    this.Flatmate_details =  this.Flatmate_detail.valueChanges();
     return this.Flatmate_details;
   }
 
   update_details(info: Info) {
 
-    let userId = firebase.auth().currentUser.uid;
-    this.firestore.collection('user' , ref=>ref.where('userID', '==', userId)).add(info);
+    let currentUser = firebase.auth().currentUser;
+    this.profileDoc = this.Profile_detail.doc(currentUser.uid);
+    this.profileDoc.set(info);
     
-
   }
 
-  update_flatmates(){
+  update_flatmates(item:Item){
 
+    return new Promise<any>((resolve, reject) => {
+      let currentUser = firebase.auth().currentUser;
+      this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').doc(currentUser.uid).set(item)
+      .then(
+        res => resolve(res),
+        err => reject(err)
+      )
+    })
+    
+    // let currentUser = firebase.auth().currentUser;
+    // this.FlatmateDoc = this.Flatmate_detail.doc(currentUser.uid);
+    // this.FlatmateDoc.set(item);
+    
   }
+
 
 }

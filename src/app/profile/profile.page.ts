@@ -12,9 +12,20 @@ import { Info } from '../models/info';
 })
 export class ProfilePage implements OnInit {
 
-  info: any;
-  
- 
+  infos: Info[];
+  // inf:Info={
+  //   name: '',
+  //   age:'',
+  //   gender:'',
+  //   habit:''
+  // };
+
+  localProfile : Info = {
+    name: '',
+    age:'',
+    gender:'',
+    habit:''
+  };
   
 
   constructor(
@@ -26,24 +37,25 @@ export class ProfilePage implements OnInit {
     private dataservice : DatabaseService
   ) {}
 
-  async ngOnInit() {
-    this.info = new Object();
-
-    this.info.name ="";
-    this.info.age ="";
-    this.info.gender ="";
-    this.info.habit ="";
-
-    this.info = await this.dataservice.show_details();
+  ngOnInit() {
+    this.dataservice.show_details().subscribe(infos =>{
+      this.infos = infos;
+      this.localProfile = this.infos[0];
+    });
+    // this.dataservice.get_user_details(null);
     
     let a = 1;
   }
 
   
   update(){
+<<<<<<< HEAD
+      this.dataservice.update_details(this.localProfile);
+=======
  
       this.dataservice.update_details(this.info);
 
+>>>>>>> dev-hanwen
   }
 
   BacktoHome(){

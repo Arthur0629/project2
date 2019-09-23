@@ -1,22 +1,36 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
- 
+<ion-content class= "ion-padding">
+  <!-- <div *ngIf="infos?.length > 0 else noinfos">
     <h1>Your information</h1>
 
       <div class="row">
-          Name: <ion-input [(ngModel)]="info.name"  name="name"></ion-input><br>
-          Age: <ion-input [(ngModel)]="info.age"  name="age"></ion-input><br>
-          Gender: <ion-input [(ngModel)]="info.gender"  name="gender"></ion-input><br>
-          Habit: <ion-input [(ngModel)]="info.habit"  name="habit"></ion-input>
+          Name: <ion-input type = "text" [(ngModel)]="info.name" [(ngModel)]="inf.name" name="name"></ion-input><br>
+          Age: <ion-input type = "text" [(ngModel)]="info.age" [(ngModel)]="inf.age" name="age"></ion-input><br>
+          Gender: <ion-input type = "text" [(ngModel)]="info.gender" [(ngModel)]="inf.gender" name="gender"></ion-input><br>
+          Habit: <ion-input type = "text" [(ngModel)]="info.habit" [(ngModel)]="inf.habit" name="habit"></ion-input>
       </div>
+    </ul>
+  </div> -->
 
+  
+    <div class="row">
+        Name: <ion-input [(ngModel)]="localProfile.name" name="name"></ion-input><br>
+        Age: <ion-input [(ngModel)]="localProfile.age" name="age"></ion-input><br>
+        Gender: <ion-input [(ngModel)]="localProfile.gender" name="gender"></ion-input><br>
+        Habit: <ion-input [(ngModel)]="localProfile.habit" name="habit"></ion-input>
+    </div>
+ 
 
-
+    
+    
+    <ng-template #noinfos>
+      <h5>Waiting...</h5>
+    </ng-template>
     <ion-button (click)="update()">Update</ion-button>  
     <ion-button (click)="BacktoHome()">Back</ion-button>
     <ion-button (click)="logout()">Logout</ion-button>
