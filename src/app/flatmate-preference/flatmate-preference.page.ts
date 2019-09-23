@@ -5,8 +5,6 @@ import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../service/authentication.service';
 import { Router } from '@angular/router';
 import { Item } from '../models/item';
-import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-flatmate-preference',
@@ -16,14 +14,12 @@ import * as firebase from 'firebase/app';
 export class FlatmatePreferencePage implements OnInit {
   items: Item[];
   idealMate : any;
-  test:any;
 
   constructor(
     private navCtrl: NavController,
     private dataService: DatabaseService,
     private formBuilder: FormBuilder,
     public router: Router,
-    private firestore: AngularFirestore,
     private authService: AuthenticateService
   ) { }
 
@@ -48,12 +44,6 @@ export class FlatmatePreferencePage implements OnInit {
     localStorage.setItem("idealAge",this.idealMate.age);
     localStorage.setItem("idealGender",this.idealMate.gender);
     localStorage.setItem("idealHabit",this.idealMate.habit);
-    
-  }
-
-  testbutton(){
-    let currentUser = firebase.auth().currentUser;
-    this.test = this.firestore.collection('flatmate').doc(currentUser.uid).collection('preference').doc(currentUser.uid).get();
   }
   
   BacktoHome(){
