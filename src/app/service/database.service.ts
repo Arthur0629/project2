@@ -114,11 +114,14 @@ export class DatabaseService {
 
   update_details(info: Info) {
 
-    let currentUser = firebase.auth().currentUser;
-    this.profileDoc = this.Profile_detail.doc(currentUser.uid);
-    this.profileDoc.update(info);
+    let userId = firebase.auth().currentUser.uid;
+    this.firestore.collection('user' , ref=>ref.where('userID', '==', userId)).add(info);
+    
 
   }
 
+  update_flatmates(){
+
+  }
 
 }
