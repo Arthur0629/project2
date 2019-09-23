@@ -13,12 +13,12 @@ import { Info } from '../models/info';
 export class ProfilePage implements OnInit {
 
   infos: Info[];
-  inf:Info={
-    name: '',
-    age:'',
-    gender:'',
-    habit:''
-  };
+  // inf:Info={
+  //   name: '',
+  //   age:'',
+  //   gender:'',
+  //   habit:''
+  // };
 
   localProfile : Info = {
     name: '',
@@ -42,9 +42,8 @@ export class ProfilePage implements OnInit {
       this.infos = infos;
       this.localProfile = this.infos[0];
     });
-    this.dataservice.get_user_details(null);
+    // this.dataservice.get_user_details(null);
     
-    let a = 1;
   }
 
   

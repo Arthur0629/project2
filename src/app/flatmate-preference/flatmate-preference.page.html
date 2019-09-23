@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>flatmatePreference</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class = "ion-padding">
   <div> 
       <div class="row">
           <ion-label position="floating" color="primary">Age</ion-label>
@@ -16,6 +16,8 @@
       </div>
         <ion-button (click)="update()">Update</ion-button>
   </div>
+  <ion-button (click)="testbutton()">Test</ion-button>
+  <h1>{{test}}</h1>
   <ion-button (click)="BacktoHome()">Back</ion-button>
   <ion-button (click)="logout()">Logout</ion-button>
 </ion-content>
