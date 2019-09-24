@@ -86,6 +86,24 @@ export class DatabaseService {
     })
   }
 
+  // showIdeal(){
+  //   return new Promise<any>((resolve, reject) => {
+
+  //     this.firestore.collection('user').get().toPromise().then(
+  //         res => resolve(res.docs[0].data()),
+  //         err => reject(err)
+  //       )
+  //   })   
+  // }
+
+  showIdeal(){
+
+
+    this.Profile_details = this.firestore.collection('user').valueChanges();
+    return this.Profile_details
+   
+  }
+
   update_details(info:Info){
     let uid = firebase.auth().currentUser.uid;
       let profile:any = new Object();

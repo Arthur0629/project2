@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from '../service/database.service';
 import { AuthenticateService } from '../service/authentication.service';
 import { LoadingController, NavController } from '@ionic/angular';
-import { Info } from '../models/info';
+
 
 @Component({
   selector: 'app-profile',
@@ -13,14 +13,6 @@ import { Info } from '../models/info';
 export class ProfilePage implements OnInit {
 
   info: any;
-  // inf:Info={
-  //   name: '',
-  //   age:'',
-  //   gender:'',
-  //   habit:''
-  // };
-
-
 
   constructor(
     private navCtrl: NavController,

@@ -6,25 +6,19 @@
 
 
 <ion-content class = "ion-padding">
+  <ul *ngFor = "let recItem of recItems">
 
-  <ion-button class="submit-btn" (click)="onUpdateProfile()">Update Profile</ion-button>
+    <div class="row">
+     <li>Name: {{recItem.name}}</li>
+    <!-- Age: <ion-input [(ngModel)]="recItem.age"  name="age"></ion-input><br>
+    Gender: <ion-input [(ngModel)]="recItem.gender"  name="gender"></ion-input><br>
+    Habit: <ion-input [(ngModel)]="recItem.habit"  name="habit"></ion-input> -->
+    </div>
+  
+  </ul>
+
+
+  
+  
   <ion-button class="submit-btn" (click)="goHome()">Go Back Home Page</ion-button>
-  <ion-list >
-
-      <ion-item-sliding *ngFor = "let item of arrayOfItems">
-          <ion-item>
-            <ion-label>{{item.name}}</ion-label>
-            <ion-label>{{item.dob}}</ion-label>
-            <ion-label>{{item.result}}</ion-label>
-          </ion-item>
-          <ion-item-options>
-            <ion-item-option (click)="onCheckDetails(item)">Detilas
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-  
-  
-
-  </ion-list>
-
 </ion-content>
