@@ -6,13 +6,23 @@
 
 
 <ion-content class = "ion-padding">
+  <h1>Your flatmate prefernce</h1>
+    <div class="row">
+        <ion-label position="floating" color="primary">Age</ion-label>
+        <P>{{item.age}}</P>
+        <ion-label position="floating" color="primary">Gender</ion-label>
+        <P>{{item.gender}}</P>
+        <ion-label position="floating" color="primary">Habit</ion-label>
+        <P>{{item.habit}}</P>
+    </div>
+    <h1>Your Recommendation List</h1>
   <ul *ngFor = "let recItem of recItems">
 
     <div class="row">
      <li>Name: {{recItem.name}}</li>
-    <!-- Age: <ion-input [(ngModel)]="recItem.age"  name="age"></ion-input><br>
-    Gender: <ion-input [(ngModel)]="recItem.gender"  name="gender"></ion-input><br>
-    Habit: <ion-input [(ngModel)]="recItem.habit"  name="habit"></ion-input> -->
+     <li>Name: {{recItem.age}}</li>
+     <li>Name: {{recItem.gender}}</li>
+     <li>Name: {{recItem.habit}}</li>
     </div>
   
   </ul>

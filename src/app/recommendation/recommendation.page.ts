@@ -3,6 +3,8 @@ import { NavController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../service/database.service';
 import { Info } from '../models/info';
+import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 
@@ -12,41 +14,28 @@ import { Info } from '../models/info';
   styleUrls: ['./recommendation.page.scss'],
 })
 export class RecommendationPage implements OnInit {
-  item:any;
-
+  Profile_details: Observable<Info[]>;
   recItems: Info[];
-
-
-  recItem:any;
-
+  item:any;
 
   constructor(private navCtrl: NavController,
     public router: Router,
+    private firestore: AngularFirestore,
     private dataservice : DatabaseService
 
     ) {}
 
   async ngOnInit(){
 
-
-
-    // this.recItem = new Object();
-    // this.recItem.name = "";
-    // this.recItem.age = "";
-    // this.recItem.gender = "";
-    // this.recItem.habit = "";
-
-   
-
-    // this.recItem = await this.dataservice.showIdeal();
-
-
-
     
-    
-    
+    this.item = new Object();
+    this.item.age = "";
+    this.item.gender = "";
+    this.item.habit = "";
+    this.item = await this.dataservice.show_flatmates();
 
-    this.dataservice.showIdeal().subscribe(infos =>{
+
+    await this.showIdeal().subscribe(infos =>{
  
       this.recItems = infos;
       });
@@ -65,6 +54,14 @@ export class RecommendationPage implements OnInit {
     this.navCtrl.navigateForward('/comparasion-detail');
 
   }
+
+  showIdeal(){
+
+    this.Profile_details = this.firestore.collection('user', ref=>ref.where('age', '==', this.item.age).where('gender', '==', this.item.gender).where('habit', '==', this.item.habit)).valueChanges();
+    return this.Profile_details
+   
+  }
+
 
   
 

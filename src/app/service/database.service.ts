@@ -20,6 +20,7 @@ export class DatabaseService {
   Flatmate_detail: AngularFirestoreCollection<Item>;
   Flatmate_details: Observable<Item[]>;
   FlatmateDoc: AngularFirestoreDocument<Item>;
+
  
   constructor(
     private firestore: AngularFirestore,
@@ -86,23 +87,13 @@ export class DatabaseService {
     })
   }
 
+
   // showIdeal(){
-  //   return new Promise<any>((resolve, reject) => {
 
-  //     this.firestore.collection('user').get().toPromise().then(
-  //         res => resolve(res.docs[0].data()),
-  //         err => reject(err)
-  //       )
-  //   })   
-  // }
-
-  showIdeal(){
-
-
-    this.Profile_details = this.firestore.collection('user').valueChanges();
-    return this.Profile_details
+  //   this.Profile_details = this.firestore.collection('user', ref=>ref.where('gender', '==', 'male').where('habit', '==', 'cold')).valueChanges();
+  //   return this.Profile_details
    
-  }
+  // }
 
   update_details(info:Info){
     let uid = firebase.auth().currentUser.uid;

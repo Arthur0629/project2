@@ -7,12 +7,25 @@
 <ion-content class = "ion-padding">
   <div> 
       <div class="row">
-          <ion-label position="floating" color="primary">Age</ion-label>
-          <ion-input [(ngModel)]="item.age" name="age"></ion-input>
-          <ion-label position="floating" color="primary">Gender</ion-label>
-          <ion-input [(ngModel)]="item.gender" name="gender"></ion-input>
-          <ion-label position="floating" color="primary">Habit</ion-label>
-          <ion-input [(ngModel)]="item.habit" name="habit"></ion-input>
+          <ion-label position="floating" color="primary">Age</ion-label><br>
+          <select [(ngModel)]="item.age" name="age">
+              <option value="18~25">18~25</option>
+              <option value="26~30">26~30</option>
+              <option value="31~35">31~35</option>
+              <option value="36~">36~</option>
+          </select><br>
+          <ion-label position="floating" color="primary">Gender</ion-label><br>
+          <select [(ngModel)]="item.gender" name="gender">
+              <option value="male">male</option>
+              <option value="female">female</option>
+          </select><br>
+          <ion-label position="floating" color="primary">Habit</ion-label><br>
+          <select [(ngModel)]="item.habit" name="habit">
+              <option value="clean">clean</option>
+              <option value="outgoing">outgoing</option>
+              <option value="late sleep">late sleep</option>
+              <option value="early sleep">early sleep</option>
+          </select>
       </div>
         <ion-button (click)="update()">Update</ion-button>
   </div>

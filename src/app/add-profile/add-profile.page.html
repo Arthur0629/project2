@@ -6,10 +6,27 @@
 
 <ion-content padding>
   <div class="row">
-    Name: <ion-input [(ngModel)]="info.name" name="name"></ion-input><br>
-    Age: <ion-input [(ngModel)]="info.age" name="age"></ion-input><br>
-    Gender: <ion-input [(ngModel)]="info.gender" name="gender"></ion-input><br>
-    Habit: <ion-input [(ngModel)]="info.habit" name="habit"></ion-input>
+      <ion-label position="floating" color="primary">Name</ion-label>
+      <ion-input [(ngModel)]="info.name"  name="name"></ion-input><br>
+      <ion-label position="floating" color="primary">Age</ion-label><br>
+      <select [(ngModel)]="info.age" name="age">
+          <option value="18~25">18~25</option>
+          <option value="26~30">26~30</option>
+          <option value="31~35">31~35</option>
+          <option value="36~">36~</option>
+      </select><br>
+      <ion-label position="floating" color="primary">Gender</ion-label><br>
+      <select [(ngModel)]="info.gender" name="gender">
+          <option value="male">male</option>
+          <option value="female">female</option>
+      </select><br>
+      <ion-label position="floating" color="primary">Habit</ion-label><br>
+      <select [(ngModel)]="info.habit" name="habit">
+          <option value="clean">clean</option>
+          <option value="outgoing">outgoing</option>
+          <option value="late sleep">late sleep</option>
+          <option value="early sleep">early sleep</option>
+      </select>
   </div>
   <ion-button (click)="submitProfile()">Submit</ion-button>
   <ion-button (click)="logout()">Logout</ion-button>
