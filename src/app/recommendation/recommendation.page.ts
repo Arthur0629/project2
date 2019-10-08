@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 
 
+
 @Component({
   selector: 'app-recommendation',
   templateUrl: './recommendation.page.html',
@@ -17,7 +18,7 @@ export class RecommendationPage implements OnInit {
   Profile_details: Observable<Info[]>;
   recItems: Info[];
   item:any;
-
+  test:any;
   constructor(private navCtrl: NavController,
     public router: Router,
     private firestore: AngularFirestore,
@@ -35,11 +36,12 @@ export class RecommendationPage implements OnInit {
     this.item = await this.dataservice.show_flatmates();
 
 
+
+
     await this.showIdeal().subscribe(infos =>{
  
       this.recItems = infos;
       });
-
 
   }
 
@@ -50,20 +52,24 @@ export class RecommendationPage implements OnInit {
   }
 
 
-  onCheckDetails(){
-    this.navCtrl.navigateForward('/comparasion-detail');
-
+  filterAge(){
+    this.router.navigateByUrl('filter-age')
+  }
+  filterGender(){
+    this.router.navigateByUrl('filter-gender')
+  }
+  filterHabit(){
+    this.router.navigateByUrl('filter-habit')
   }
 
   showIdeal(){
 
-    this.Profile_details = this.firestore.collection('user', ref=>ref.where('age', '==', this.item.age).where('gender', '==', this.item.gender).where('habit', '==', this.item.habit)).valueChanges();
-    return this.Profile_details
+    this.Profile_details = this.firestore.collection('user', ref=>ref.where('age', '==', this.item.age)
+    .where('gender', '==', this.item.gender).where('habit', '==', this.item.habit)).valueChanges();
+    return this.Profile_details;
    
   }
 
 
-  
 
-  
 }

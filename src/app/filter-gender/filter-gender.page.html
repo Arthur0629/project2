@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Recommendation List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class = "ion-padding">
+  <h1>Your flatmate prefernce</h1>
+    <div class="row">
+        <ion-label position="floating" color="primary">Gender</ion-label>
+        <P>{{item.gender}}</P>
+        <ion-button (click)="selectAll()">select All condition</ion-button>
+        <ion-button (click)="filterAge()">only select age</ion-button>
+        <ion-button (click)="filterHabit()">only select habit</ion-button>
+    </div>
+    
+    <h1>Your Recommendation List</h1>
+  <ul *ngFor = "let recItem of recItems">
+
+    <div class="row">
+     <li>Name: {{recItem.name}}</li>
+     <li>age: {{recItem.age}}</li>
+     <li>gender: {{recItem.gender}}</li>
+     <li>habit: {{recItem.habit}}</li>
+    </div>
+  
+  </ul>
+
+  
+
+
+  
+  
+  <ion-button class="submit-btn" (click)="goHome()">Go Back Home Page</ion-button>
+</ion-content>

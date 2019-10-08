@@ -88,13 +88,6 @@ export class DatabaseService {
   }
 
 
-  // showIdeal(){
-
-  //   this.Profile_details = this.firestore.collection('user', ref=>ref.where('gender', '==', 'male').where('habit', '==', 'cold')).valueChanges();
-  //   return this.Profile_details
-   
-  // }
-
   update_details(info:Info){
     let uid = firebase.auth().currentUser.uid;
       let profile:any = new Object();

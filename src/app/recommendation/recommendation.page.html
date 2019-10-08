@@ -14,18 +14,24 @@
         <P>{{item.gender}}</P>
         <ion-label position="floating" color="primary">Habit</ion-label>
         <P>{{item.habit}}</P>
+        <ion-button (click)="filterAge()">only select age</ion-button>
+        <ion-button (click)="filterGender()">only select gender</ion-button>
+        <ion-button (click)="filterHabit()">only select habit</ion-button>
     </div>
+    
     <h1>Your Recommendation List</h1>
   <ul *ngFor = "let recItem of recItems">
 
     <div class="row">
      <li>Name: {{recItem.name}}</li>
-     <li>Name: {{recItem.age}}</li>
-     <li>Name: {{recItem.gender}}</li>
-     <li>Name: {{recItem.habit}}</li>
+     <li>age: {{recItem.age}}</li>
+     <li>gender: {{recItem.gender}}</li>
+     <li>habit: {{recItem.habit}}</li>
     </div>
   
   </ul>
+
+  
 
 
   

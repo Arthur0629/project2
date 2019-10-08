@@ -17,13 +17,15 @@ export class ProfilePage implements OnInit {
   constructor(
     private navCtrl: NavController,
     public router: Router,
-    public loadingCtrl: LoadingController,
     private authService: AuthenticateService,
     private route: ActivatedRoute,
     private dataservice : DatabaseService
+    
   ) {}
 
   async ngOnInit() {
+
+
     this.info = new Object();
 
     this.info.name ="";
@@ -33,6 +35,7 @@ export class ProfilePage implements OnInit {
 
     this.info = await this.dataservice.show_details();
   }
+
 
   
   update(){
