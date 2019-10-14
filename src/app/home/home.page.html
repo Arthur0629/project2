@@ -6,12 +6,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class = "ion-padding">
-  <img src="https://live.staticflickr.com/65535/48868418653_2e5a141f56_z.jpg" width="200" height="200" alt="logo">
-  <div class="ion-row">
-    <ion-button (click)="gotoProfile()" class="square">Profile</ion-button>
-    <ion-button (click)="gotoFlatmatepreference()" class="square">Flatmate<br /> Preference</ion-button>
-    <ion-button (click)="recommendationList()"class="square">Recommendation<br /> List</ion-button>
-    <ion-button (click)="logout()" class="square">Logout</ion-button>
+<ion-content class ="ion-padding" *ngIf="hasVerifiedEmail != true else main" >
+  <div class="verify-email">
+    Please send a verification email and verify your account
   </div>
+  <ion-button (click)="sendEmail()" class="square" onclick="alert('sent verification email')">send<br>verification<br> email</ion-button>
+  <ion-button (click)="gotoProfile()" class="square">Profile</ion-button>
+  <ion-button (click)="reload()" class="square">reload</ion-button>
+  <ion-button (click)="logout()" class="square">Logout</ion-button>
 </ion-content>
+<ng-template #main>
+  <ion-content class = "ion-padding">
+    <img src="https://live.staticflickr.com/65535/48868418653_2e5a141f56_z.jpg" width="200" height="200" alt="logo">
+    <div class="ion-row">
+      <ion-button (click)="gotoProfile()" class="square">Profile</ion-button>
+      <ion-button (click)="gotoFlatmatepreference()" class="square">Flatmate<br>Preference</ion-button>
+      <ion-button (click)="recommendationList()"class="square">Recommendation<br>List</ion-button>
+      <ion-button (click)="logout()" class="square">Logout</ion-button>
+    </div>
+  </ion-content>
+</ng-template>
