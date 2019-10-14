@@ -39,7 +39,9 @@ export class AddProfilePage implements OnInit {
     this.info.age = '';
     this.info.gender = '';
     this.info.habit = '';
+    this.authService.snedEmail();
     this.router.navigateByUrl('home');
+    
 
   }
 }

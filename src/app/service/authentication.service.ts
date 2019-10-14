@@ -24,6 +24,21 @@ export class AuthenticateService {
    })
   }
 
+  snedEmail(){
+    return new Promise((resolve, reject) => {
+      if(firebase.auth().currentUser){
+        firebase.auth().currentUser.sendEmailVerification()
+        .then(() => {
+          console.log("sent verification email");
+          resolve();
+        }).catch((error) => {
+          reject();
+        });
+      }
+    })
+
+  }
+
  
   logoutUser(){
     return new Promise((resolve, reject) => {

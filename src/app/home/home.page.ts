@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, LoadingController } from '@ionic/angular';
 import { AuthenticateService } from '../service/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DatabaseService } from '../service/database.service';
 
 
 @Component({
@@ -17,8 +16,6 @@ export class HomePage {
     public router: Router,
     public loadingCtrl: LoadingController,
     private authService: AuthenticateService,
-    private route: ActivatedRoute,
-    private dataservice : DatabaseService
   ) {}
 
   gotoProfile(){
