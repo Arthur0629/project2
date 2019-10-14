@@ -14,15 +14,6 @@ export class AuthenticateService {
        err => reject(err))
    })
   }
-  emailVerification(value){
-    return new Promise<any>((resolve, reject) => {
-      let user = firebase.auth().currentUser;
-      user.sendEmailVerification(value.email)
-      .then(
-        res => resolve(res),
-        err => reject(err))
-    })
-  }
  
   loginUser(value){
    return new Promise<any>((resolve, reject) => {
@@ -31,8 +22,6 @@ export class AuthenticateService {
        res => resolve(res),
        err => reject(err))
    })
-
-   
   }
 
  
@@ -49,8 +38,5 @@ export class AuthenticateService {
       }
     })
   }
- 
-  userDetails(){
-    return firebase.auth().currentUser;
-  }
+
 }
