@@ -8,11 +8,11 @@
 <ion-content class = "ion-padding">
   <h1>Your flatmate prefernce</h1>
     <div class="row">
-        <ion-label position="floating" color="primary">Age</ion-label>
+        <ion-label color="primary">Age</ion-label>
         <P>{{item.age}}</P>
-        <ion-label position="floating" color="primary">Gender</ion-label>
+        <ion-label  color="primary">Gender</ion-label>
         <P>{{item.gender}}</P>
-        <ion-label position="floating" color="primary">Habit</ion-label>
+        <ion-label color="primary">Habit</ion-label>
         <P>{{item.habit}}</P>
         <ion-button (click)="filterAge()">only select age</ion-button>
         <ion-button (click)="filterGender()">only select gender</ion-button>
@@ -22,7 +22,7 @@
     <h1>Your Recommendation List</h1>
   <ul *ngFor = "let recItem of recItems">
 
-    <div class="row">
+    <div>
      <li>Name: {{recItem.name}}</li>
      <li>age: {{recItem.age}}</li>
      <li>gender: {{recItem.gender}}</li>
@@ -36,5 +36,5 @@
 
   
   
-  <ion-button class="submit-btn" (click)="goHome()">Go Back Home Page</ion-button>
+  <ion-button  expand="full" (click)="goHome()">Go Back Home Page</ion-button>
 </ion-content>

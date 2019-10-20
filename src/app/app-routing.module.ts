@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'add-profile', loadChildren: './add-profile/add-profile.module#AddProfilePageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'flatmate-preference', loadChildren: './flatmate-preference/flatmate-preference.module#FlatmatePreferencePageModule' },
-  { path: 'comparasion-detail', loadChildren: './comparasion-detail/comparasion-detail.module#ComparasionDetailPageModule' },
   { path: 'filter-age', loadChildren: './filter-age/filter-age.module#FilterAgePageModule' },
   { path: 'filter-gender', loadChildren: './filter-gender/filter-gender.module#FilterGenderPageModule' },
   { path: 'filter-habit', loadChildren: './filter-habit/filter-habit.module#FilterHabitPageModule' },

@@ -3,11 +3,17 @@
     width:150px;
     text-align: center;
     font-size: 10pt;
+    position: relative;
+    left: 8px;
     
 }
 .verify-email {
     background: red;
     color: white;
+}
+.img{
+    position: relative;
+    left: 60px; 
 }
 
 

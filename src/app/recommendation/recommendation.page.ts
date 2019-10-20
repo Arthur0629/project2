@@ -64,8 +64,11 @@ export class RecommendationPage implements OnInit {
 
   showIdeal(){
 
-    this.Profile_details = this.firestore.collection('user', ref=>ref.where('age', '==', this.item.age)
-    .where('gender', '==', this.item.gender).where('habit', '==', this.item.habit)).valueChanges();
+    this.Profile_details = this.firestore.collection('user', ref=>
+    ref.where('age', '==', this.item.age)
+    .where('gender', '==', this.item.gender)
+    .where('habit', '==', this.item.habit))
+    .valueChanges();
     return this.Profile_details;
    
   }

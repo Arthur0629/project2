@@ -7,7 +7,7 @@
 
 <ion-content class = "ion-padding">
   <h1>Your flatmate prefernce</h1>
-    <div class="row">
+    <div>
         <ion-label position="floating" color="primary">Gender</ion-label>
         <P>{{item.gender}}</P>
         <ion-button (click)="selectAll()">select All condition</ion-button>
@@ -18,7 +18,7 @@
     <h1>Your Recommendation List</h1>
   <ul *ngFor = "let recItem of recItems">
 
-    <div class="row">
+    <div>
      <li>Name: {{recItem.name}}</li>
      <li>age: {{recItem.age}}</li>
      <li class = "red">gender: {{recItem.gender}}</li>
@@ -32,5 +32,5 @@
 
   
   
-  <ion-button class="submit-btn" (click)="goHome()">Go Back Home Page</ion-button>
+  <ion-button expand="full" (click)="goHome()">Go Back Home Page</ion-button>
 </ion-content>
